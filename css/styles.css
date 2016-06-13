@@ -1,0 +1,19 @@
+
+body {background-color:#708090;}
+
+h1 
+{
+  color: navy;
+  text-align:center;
+}
+
+.txtboxPad {text-align: center;}  
+  
+#btnFind
+ {
+  cursor: pointer;	 
+  background-color: #8FBC8F;
+  text-align: center;
+  height:30px;
+  width:130px;
+}
