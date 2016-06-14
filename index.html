@@ -5,36 +5,39 @@
   
     <title> Determinant </title>
 	
-	<link rel="stylesheet" type="text/css" href="styles.css">
+	<link rel="stylesheet" type="text/css" href="css/styles.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/3.1.4/math.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
-	<script src="application.js"></script> 
+	<script src="js/application.js"></script> 
 	
 	</head>
   
-  <h1><i> Find the determinant of a 3x3 matrix </i></h1>
-  <center><p><a href="https://en.wikipedia.org/wiki/Determinant">Determinant solution method</a></p></center>
+  <body>
   
-  <br><br><br>
-  <center><i><p>Input numbers...</p></i></center>
-  
-  <div class="txtboxPad">
+    <table id= "steps">
+  <tr>
+    <td id = "first_td">Matrix order</td>
+    <td id = "second_td">Show matrix</td>
+    <td id = "third_td">Find determinant</td>
+  </tr>
  
-  <input type="text" id="num1" size="1"> 
-  <input type="text" id="num2" size="1">
-  <input type="text" id="num3" size="1"><br><br>
-  
-  <input type="text" id="num4" size="1"> 
-  <input type="text" id="num5" size="1">
-  <input type="text" id="num6" size="1"><br><br>
-  
-  <input type="text" id="num7" size="1"> 
-  <input type="text" id="num8" size="1">
-  <input type="text" id="num9" size="1"><br><br>
-  
-  </div>
-  
-  <center><button id="btnFind">Find Determinant</button></center> 
-  <center><p id="Answer"></p></center>
-  
+ </table>
+
+<button id ="start">Start</button>
+
+<div id = "first_page">
+     Select the order of matrix <button id ="next1">Next</button>
+   <br /><select id="order"></select><br/>
+
+</div>
+
+<div id = "second_page">
+Input elements then click 'find det' <button id ="find">Find det</button><button id ="restart">Start over</button><br /><br />
+<form id = "txtbox"></form>
+<p id = "answer"></p> 
+</div>
+
+   
+</body>
   
 </html>  

@@ -1,40 +1,83 @@
 
-$(document).ready(function Determinant (){
-	$("#btnFind").click(function Determinant (){
+// first we click start then the first 'td' color becomes yellow 
+// which means that we in the first step
 
-  var num1=$("#num1").val();
-  var num2=$("#num2").val();
-  var num3=$("#num3").val();
-  var num4=$("#num4").val();
-  var num5=$("#num5").val();
-  var num6=$("#num6").val();
-  var num7=$("#num7").val();
-  var num8=$("#num8").val();
-  var num9=$("#num9").val();
-  
-  var sum1 = (num1*num5*num9);
-  var sum2 = (num2*num6*num7);
-  var sum3 = (num3*num4*num8);
-  var sum4 = (num3*num5*num7);
-  var sum5 = (num2*num4*num9);
-  var sum6 = (num1*num6*num8);
+$(document).ready(function showOrder() {
+    $('#start').click(function showOrder() {
+        $(this).hide();
+        $('#first_td').css("background-color", "yellow");
+        $('#first_page').css("visibility", "visible");
 
-  var det = (num1*num5*num9)+(num2*num6*num7)
-           +(num3*num4*num8)-(num3*num5*num7)
-		   -(num2*num4*num9)-(num1*num6*num8);  
+    });
+});
 
-  if(isNaN(det))
-  {
-     $("#Answer").html("Type with the correct form ");
-  }
-  else if (num1=="" || num2=="" || num3=="" || num4=="" || num5=="" || num6=="" || num7=="" || num8=="" || num9=="")
-  {
-     $("#Answer").html("Fill all textboxes");
-  }
-  else
-  {	
-     $("#Answer").html("Det A = "+"("+sum1+") + ("+sum2+") + ("+sum3+") - ("+sum4+") - ("+sum5+") - ("+sum6+") = "+det);
-  }	
-	
+// select the order of square matrix then click next
+// second 'td' color becomes yellow 
+
+$(document).ready(function showtxtBox() {
+    $('#next1').click(function showtxtBox() {
+        
+        $('#second_td').css("background-color", "yellow");
+        $('#first_page').hide();
+        $('#second_page').css("visibility", "visible");
+
+        var num = $('#order').val();
+        var txtbox = $('#txtbox');
+
+        for (i = 1; i <= num; i++) {
+            for (j = 1; j <= num; j++) {
+                txtbox.append($('<input size="1" >').attr('id', "box[" + i + "][" + j + "]"));
+                txtbox.append("  ");
+            }
+            txtbox.append('<br/><br/>')
+        }
+    });
+});
+
+// this is the order of matrix (up to 20) 
+
+$(function () {
+    var hello = $('#order');
+    for (i = 2; i <= 20; i++) {
+        hello.append($('<option></option>').html(i));
+    }
+});
+
+// after clicking find det third 'td' color becomes yellow 
+// here we use math.js det(A) function to find det
+
+$(document).ready(function Finddet() {
+    $('#find').click(function Finddet() {
+        $('#third_td').css("background-color", "yellow");
+        var detstr = "";
+        var num = $('#order').val();
+
+        for (i = 1; i <= num; i++) {
+            for (j = 1; j <= num; j++) {
+                detstr += $('input[id="box[' + i + '][' + j + ']"]').val() + ",";
+
+            }
+
+            if (isNaN($('input[id="box[' + i + '][' + j + ']"]').val())) {
+                $("#answer").html("Fill textboxes with the correct form !");
+            }
+
+            detstr = detstr.slice(0, detstr.length - 1);
+            detstr += ";";
+        }
+        detstr = detstr.slice(0, detstr.length - 1);
+
+        var A = math.eval('det([' + detstr + '])');
+
+        $("#answer").html("det(A) = " + A);
+
+    });
+});
+
+// button 'Start over' that reloads the page 
+
+$(document).ready(function Reload() {
+$('#restart').click(function Reload () {
+    location.reload();
 });
 });

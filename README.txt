@@ -1,14 +1,8 @@
 
-This program counts the determinant of 3x3 matrix.
-There are 9 textboxes in the website and user must input numbers in it.
-After typing numbers in all textboxes user has to press the button below to see the result.
-If even one textbox is empty it will give you a message (fill all textboxes).
-Also user must type only numbers (minus sign also accepted) otherwise it will give you a message.
+This program counts the determinant of NxN matrix.
 
-e.g. we have matrix A and detA = ?
+Programs consists of three steps 
 
-a b c
-d e f
-g h i
-
-det A = (a*e*i) + (b*f*g) + (c*d*h) - (c*e*g) - (b*d*i) - (a*f*h).
+First. We select the order of matrix.
+Second. Program show us the square matrix (e.g. 5x5 input boxes).
+Third. After inputting numbers in input boxes we click find det and it shoes us th result.
