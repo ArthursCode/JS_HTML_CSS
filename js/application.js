@@ -43,33 +43,102 @@ $(function () {
     }
 });
 
-// after clicking find det third 'td' color becomes yellow 
-// here we use math.js det(A) function to find det
+//  sign of even elements set positive 
+//  sign of odd elements set negative
+
+//*******************************************************************************
+function Sign(i, j) {
+
+    if ((i + j) % 2 == 0) {
+        return 1;
+    }
+    else {
+        return -1;
+    }
+}
+
+// submatrix which order = (given matrix order) - 1
+
+function Minor(input, i, j) {
+
+    var order = input.length;
+    var output = new Array(input.length - 1);
+
+    for (var m = 0; m < order - 1; m++) {
+        output[m] = new Array(order - 1);
+    }
+    var x = 0, y = 0;
+    for (var m = 0; m < order; m++, x++) {
+        if (m != i) {
+            y = 0;
+
+            for (var n = 0; n < order; n++) {
+                if (n != j) {
+                    output[x][y] = input[m][n];
+                    y++;
+                }
+            }
+        }
+        else {
+            x--;
+        }
+    }
+    return output;
+}
+
+// recursion which repeats Determinant(tmp) where minor is Minor of matrix  
+
+function Determinant(input) {
+    var order = input.length;
+
+    if (order > 2) {
+        var val = 0;
+        for (var j = 0; j < order; j++) {
+            var minor = Minor(input, 0, j);
+            val = val + input[0][j] * (Sign(0, j) * Determinant(minor));
+        }
+        return val;
+    }
+    else if (order == 2) {
+        return ((input[0][0] * input[1][1]) - (input[1][0] * input[0][1]));
+    }
+
+}
+//*************************************************************************************************
+
+// after clicking find det third 'td' color becomes yellow /*
 
 $(document).ready(function Finddet() {
     $('#find').click(function Finddet() {
-        $('#third_td').css("background-color", "yellow");
-        var detstr = "";
-        var num = $('#order').val();
 
-        for (i = 1; i <= num; i++) {
-            for (j = 1; j <= num; j++) {
-                detstr += $('input[id="box[' + i + '][' + j + ']"]').val() + ",";
+        try {
 
-            }
+            $('#third_td').css("background-color", "yellow");
+            var detstr = "[";
+            var num = $('#order').val();
 
-            if (isNaN($('input[id="box[' + i + '][' + j + ']"]').val())) {
-                $("#answer").html("Fill textboxes with the correct form !");
+            for (i = 1; i <= num; i++) {
+                for (j = 1; j <= num; j++) {
+                    detstr += $('input[id="box[' + i + '][' + j + ']"]').val() + ",";
+                }
+
+                detstr = detstr.slice(0, detstr.length - 1);
+                detstr += "],[";
             }
 
             detstr = detstr.slice(0, detstr.length - 1);
-            detstr += ";";
+
+            var A = eval('[' + detstr + ']');
+            if (isNaN(Determinant(A))) {
+                $("#answer").html("Տվյալները ճիշտ լրացրեք !");
+            }
+            else {
+                $("#answer").html("Մատրիցի որոշիչը " + Determinant(A) + " է:");
+            }
+            
+        } catch (ex) {
+            $("#answer").html("Տվյալները ճիշտ լրացրեք !");
         }
-        detstr = detstr.slice(0, detstr.length - 1);
-
-        var A = math.eval('det([' + detstr + '])');
-
-        $("#answer").html("det(A) = " + A);
 
     });
 });
