@@ -35,17 +35,17 @@ body {background-color:#708090;}
 #next{
         margin-left: 50px;
         height: 30px;
-        width: 80px;
+        width: 120px;
         font-weight: bold;}
 
 #find{
         margin-left: 50px;
-        height: 30px;
+        height: 50px;
         width: 80px;
         font-weight: bold;}
 
 #restart{
         margin-left: 20px;
-        height: 30px;
+        height: 50px;
         width: 80px;
         font-weight: bold;}
