@@ -15,7 +15,7 @@ $(document).ready(function showOrder() {
 // second 'td' color becomes yellow 
 
 $(document).ready(function showtxtBox() {
-    $('#next1').click(function showtxtBox() {
+    $('#next').click(function showtxtBox() {
         
         $('#second_td').css("background-color", "yellow");
         $('#first_page').hide();
